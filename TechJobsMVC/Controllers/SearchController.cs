@@ -23,7 +23,6 @@ namespace TechJobsMVC.Controllers
 
         public IActionResult Results(string searchType, string searchTerm)
         {
-            ViewBag.columns = ListController.ColumnChoices;
             List<Job> jobs;
             if (String.IsNullOrEmpty(searchTerm))
             {
@@ -35,8 +34,9 @@ namespace TechJobsMVC.Controllers
                 jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
                 ViewBag.title = "Jobs with " + ViewBag.columns[searchType] + ": " + searchTerm;
             }
+            
             ViewBag.jobs = jobs;
-            ViewBag.count = jobs.Count;
+            ViewBag.columns = ListController.ColumnChoices;
 
             return View("Index");
 

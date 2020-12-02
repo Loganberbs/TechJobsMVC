@@ -6,7 +6,7 @@ using TechJobsMVC.Models;
 
 namespace TechJobsMVC.Data
 {
-    public class JobData
+    public class JobData 
     {
         static private string DATA_FILE = "Data/job_data.csv";
 
@@ -40,8 +40,8 @@ namespace TechJobsMVC.Data
 
             if (column.Equals("all"))
             {
-                jobs = FindByValue(value);
-                return jobs;
+                AllJobs = FindByValue(value);
+                return AllJobs;
             }
             foreach (Job job in AllJobs)
             {
@@ -50,11 +50,11 @@ namespace TechJobsMVC.Data
 
                 if (aValue != null && aValue.ToLower().Contains(value.ToLower()))
                 {
-                    jobs.Add(job);
+                    AllJobs.Add(job);
                 }
             }
 
-            return jobs;
+            return AllJobs;
         }
 
         static public string GetFieldValue(Job job, string fieldName)
