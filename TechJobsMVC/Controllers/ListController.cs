@@ -10,7 +10,7 @@ using TechJobsMVC.Models;
 
 namespace TechJobsMVC.Controllers
 {
-    public class ListController : Controller
+    public class ListController : TechJobsController
     {
         internal static Dictionary<string, string> ColumnChoices = new Dictionary<string, string>()
         {
