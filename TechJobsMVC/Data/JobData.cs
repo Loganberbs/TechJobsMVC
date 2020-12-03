@@ -4,19 +4,20 @@ using System.IO;
 using System.Text;
 using TechJobsMVC.Models;
 
+
 namespace TechJobsMVC.Data
 {
-    public class JobData 
+    public class JobData
     {
-        static private string DATA_FILE = "Data/job_data.csv";
+        private static readonly string DATA_FILE = "Data/job_data.csv";
 
         static bool IsDataLoaded = false;
 
         static List<Job> AllJobs;
-        static private List<JobField> AllEmployers = new List<JobField>();
-        static private List<JobField> AllLocations = new List<JobField>();
-        static private List<JobField> AllPositionTypes = new List<JobField>();
-        static private List<JobField> AllCoreCompetencies = new List<JobField>();
+        private static readonly List<JobField> AllEmployers = new List<JobField>();
+        private static readonly List<JobField> AllLocations = new List<JobField>();
+        private static readonly List<JobField> AllPositionTypes = new List<JobField>();
+        private static readonly List<JobField> AllCoreCompetencies = new List<JobField>();
 
         static public List<Job> FindAll()
         {
@@ -31,7 +32,7 @@ namespace TechJobsMVC.Data
             // load data, if not already loaded
             LoadData();
 
-            List<Job> values = new List<Job>();
+            List<Job> jobs = new List<Job>();
 
             if (value.ToLower().Equals("all"))
             {
@@ -40,8 +41,8 @@ namespace TechJobsMVC.Data
 
             if (column.Equals("all"))
             {
-                AllJobs = FindByValue(value);
-                return AllJobs;
+                jobs = FindByValue(value);
+                return jobs;
             }
             foreach (Job job in AllJobs)
             {
@@ -50,11 +51,11 @@ namespace TechJobsMVC.Data
 
                 if (aValue != null && aValue.ToLower().Contains(value.ToLower()))
                 {
-                    AllJobs.Add(job);
+                    jobs.Add(job);
                 }
             }
 
-            return AllJobs;
+            return jobs;
         }
 
         static public string GetFieldValue(Job job, string fieldName)
